@@ -1,0 +1,16 @@
+.heading{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color:crimson;
+    font-weight: bold;
+}
+.labelField{
+  font-weight: bold;
+}
+.inputField{
+ margin-left: 1%;
+}
+.buttonField{
+ margin-left: 25%;
+}
