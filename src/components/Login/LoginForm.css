@@ -1,0 +1,23 @@
+.heading {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: crimson;
+    font-weight: bold;
+  }
+  .labelField {
+    font-weight: bolder;
+  }
+  .inputField {
+    margin-left: 1%;
+  }
+  .buttonField {
+    margin-left: 25%;
+  }
+  .errorMsg {
+    display: block;
+    font-weight: bold;
+    font-size: 12px;
+    color: crimson;
+  }
+  

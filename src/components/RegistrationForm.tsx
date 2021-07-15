@@ -19,148 +19,142 @@ function RegistrationForm() {
         password: '',
         confirmpass: ''
     });
-    const [isvalid, setValid] = useState(false);
 
     const validateForm = () => {
-        let formIsValid = true;
-
+        let isFormValid = true;
         if (!fields["firstname"]) {
-            formIsValid = false;
+            isFormValid = false;
             setErrors(prevState => {
-                return { ...prevState, firstname:  "*Please enter your Firstname." }
+                return { ...prevState, firstname: "*Please enter your Firstname." }
             });
-            // errors["firstname"] = "*Please enter your Firstname.";
+            // Below commented line wont work for objects which are set using useState hook
+            // setErrors({ ...errors, firstname: "*Please enter your Firstname." });
         }
 
         if (typeof fields["firstname"] !== "undefined") {
             if (!fields["firstname"].match(/^[a-zA-Z ]*$/)) {
-                formIsValid = false;
+                isFormValid = false;
                 setErrors(prevState => {
-                    return { ...prevState, firstname:  "*Please enter alphabet characters only." }
+                    return { ...prevState, firstname: "*Please enter alphabet characters only." }
                 });
-                // errors["firstname"] = "*Please enter alphabet characters only.";
+                // setErrors({ ...errors, firstname: "*Please enter alphabet characters only." });
             }
         }
 
         if (!fields["lastname"]) {
-            formIsValid = false;
+            isFormValid = false;
             setErrors(prevState => {
-                return { ...prevState, lastname:  "*Please enter your Lastname." }
+                return { ...prevState, lastname: "*Please enter your Lastname." }
             });
-            // errors["lastname"] = "*Please enter your Lastname.";
+            // setErrors({ ...errors, lastname: "*Please enter your Lastname." });
         }
 
         if (typeof fields["lastname"] !== "undefined") {
             if (!fields["lastname"].match(/^[a-zA-Z ]*$/)) {
-                formIsValid = false;
+                isFormValid = false;
                 setErrors(prevState => {
-                    return { ...prevState, lastname:  "*Please enter alphabet characters only." }
+                    return { ...prevState, lastname: "*Please enter alphabet characters only." }
                 });
-                // errors["lastname"] = "*Please enter alphabet characters only.";
+                // setErrors({ ...errors, lastname: "*Please enter alphabet characters only." });
             }
         }
 
         if (!fields["email"]) {
-            formIsValid = false;
+            isFormValid = false;
             setErrors(prevState => {
-                return { ...prevState, email:  "*Please enter your email-ID." }
+                return { ...prevState, email: "*Please enter your email-ID." }
             });
-            // errors["email"] = "*Please enter your email-ID.";
+            // setErrors({ ...errors, email: "*Please enter your email-ID." });
         }
 
         if (typeof fields["email"] !== "undefined") {
             //regular expression for email validation
             var pattern = new RegExp(/^(("[\w-\s]+")|([\w-]+(?:\.[\w-]+)*)|("[\w-\s]+")([\w-]+(?:\.[\w-]+)*))(@((?:[\w-]+\.)*\w[\w-]{0,66})\.([a-z]{2,6}(?:\.[a-z]{2})?)$)|(@\[?((25[0-5]\.|2[0-4][0-9]\.|1[0-9]{2}\.|[0-9]{1,2}\.))((25[0-5]|2[0-4][0-9]|1[0-9]{2}|[0-9]{1,2})\.){2}(25[0-5]|2[0-4][0-9]|1[0-9]{2}|[0-9]{1,2})\]?$)/i);
             if (!pattern.test(fields["email"])) {
-                formIsValid = false;
+                isFormValid = false;
                 setErrors(prevState => {
-                    return { ...prevState, email:   "*Please enter valid email-ID." }
+                    return { ...prevState, email: "*Please enter valid email-ID." }
                 });
-                // errors["email"] = "*Please enter valid email-ID.";
+                // setErrors({ ...errors, email: "*Please enter valid email-ID." });
             }
         }
 
         if (!fields["mobileno"]) {
-            formIsValid = false;
+            isFormValid = false;
             setErrors(prevState => {
-                return { ...prevState, mobileno:  "*Please enter your mobile no." }
+                return { ...prevState, mobileno: "*Please enter your mobile no." }
             });
-            // errors["mobileno"] = "*Please enter your mobile no.";
+            // setErrors({ ...errors, mobileno: "*Please enter your mobile no." });
         }
 
         if (typeof fields["mobileno"] !== "undefined") {
             if (!fields["mobileno"].match(/^[0-9]{10}$/)) {
-                formIsValid = false;
+                isFormValid = false;
                 setErrors(prevState => {
-                    return { ...prevState, mobileno:  "*Please enter valid mobile no." }
+                    return { ...prevState, mobileno: "*Please enter valid mobile no." }
                 });
-                // errors["mobileno"] = "*Please enter valid mobile no.";
+                // setErrors({ ...errors, mobileno: "*Please enter valid mobile no." });
             }
         }
 
         if (!fields["password"]) {
-            formIsValid = false;
+            isFormValid = false;
             setErrors(prevState => {
-                return { ...prevState, password:  "*Please enter your password." }
+                return { ...prevState, password: "*Please enter your password." }
             });
-            // errors["password"] = "*Please enter your password.";
+            // setErrors({ ...errors, password: "*Please enter your password." });
         }
 
         if (typeof fields["password"] !== "undefined") {
             if (!fields["password"].match(/^.*(?=.{8,})(?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?=.*[@#$%&]).*$/)) {
-                formIsValid = false;
+                isFormValid = false;
                 setErrors(prevState => {
-                    return { ...prevState, password:  "*Please enter secure and strong password." }
+                    return { ...prevState, password: "*Please enter secure and strong password." }
                 });
-                // errors["password"] = "*Please enter secure and strong password.";
+                // setErrors({ ...errors, password: "*Please enter secure and strong password." });
             }
         }
 
         if (!fields["confirmpass"]) {
-            formIsValid = false;
+            isFormValid = false;
             setErrors(prevState => {
-                return { ...prevState, confirmpass:  "*Please confirm your password." }
+                return { ...prevState, confirmpass: "*Please confirm your password." }
             });
-            // errors["confirmpass"] = "*Please confirm your password.";
+            // setErrors({ ...errors, confirmpass: "*Please confirm your password." });
         }
 
         if (typeof fields["confirmpass"] !== "undefined") {
             if (!fields["confirmpass"].match(/^.*(?=.{8,})(?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?=.*[@#$%&]).*$/) || (fields["confirmpass"] !== fields["password"])) {
-                formIsValid = false;
+                isFormValid = false;
                 setErrors(prevState => {
-                    return { ...prevState, confirmpass:  "*Please enter secure and strong password." }
+                    return { ...prevState, confirmpass: "*Please enter secure and strong password." }
                 });
-                // errors["confirmpass"] = "*Please enter secure and strong password.";
+                // setErrors({ ...errors, confirmpass: "*Please enter secure and strong password." });
                 if (fields["confirmpass"] !== fields["password"]) {
                     setErrors(prevState => {
-                        return { ...prevState, confirmpass:  "*Your password doesnt match" }
+                        return { ...prevState, confirmpass: "*Your password doesnt match" }
                     });
-                    // errors["confirmpass"] = "*Your password doesnt match";
+                    // setErrors({ ...errors, confirmpass: "*Your password doesnt match" });
                 }
             }
         }
-        // setErrors(errors);
-        setValid(formIsValid);
         console.log("Errors", errors);
-        return formIsValid;
+        return isFormValid;
 
     };
 
     const submituserRegistrationForm = (e: { preventDefault: () => void; }) => {
         e.preventDefault();
-        if (isvalid) {
+        if (validateForm()) {
             setFields(fields);
-            console.log("Fields", fields);
             alert("Form submitted");
         } else {
-            console.log(errors);
-            setErrors(errors);
             alert("Errors in your form");
         }
     };
 
     return (
-        <div>
+        <>
             <div className="heading">Registration Form</div>
             <form method="post" name="userRegistrationForm" onSubmit={submituserRegistrationForm} >
                 <div>
@@ -172,7 +166,7 @@ function RegistrationForm() {
                                 return { ...prevState, firstname: val }
                             });
                         }}></input>
-                        <span className="errorMsg">{errors.firstname}</span>
+                        {errors.firstname && <label className="errorMsg">{errors.firstname}</label>}
                     </span>
                     <span>
                         <label className="labelField">Enter your Lastname : </label>
@@ -182,7 +176,7 @@ function RegistrationForm() {
                                 return { ...prevState, lastname: val }
                             });
                         }}></input>
-                        <span className="errorMsg">{errors.lastname}</span>
+                        {errors.lastname && <label className="errorMsg">{errors.lastname}</label>}
                     </span>
                 </div>
                 <div>
@@ -194,7 +188,7 @@ function RegistrationForm() {
                                 return { ...prevState, email: val }
                             });
                         }}></input>
-                        <span className="errorMsg">{errors.email}</span>
+                        {errors.email && <label className="errorMsg">{errors.email}</label>}
                     </span>
                 </div>
                 <div>
@@ -206,7 +200,7 @@ function RegistrationForm() {
                                 return { ...prevState, mobileno: val }
                             });
                         }}></input>
-                        <span className="errorMsg">{errors.mobileno}</span>
+                        {errors.mobileno && <label className="errorMsg">{errors.mobileno}</label>}
                     </span>
                 </div>
                 <div>
@@ -218,7 +212,7 @@ function RegistrationForm() {
                                 return { ...prevState, password: val }
                             });
                         }}></input>
-                        <span className="errorMsg">{errors.password}</span>
+                        {errors.password && <label className="errorMsg">{errors.password}</label>}
                     </span>
                 </div>
                 <div>
@@ -230,7 +224,7 @@ function RegistrationForm() {
                                 return { ...prevState, confirmpass: val }
                             });
                         }}></input>
-                        <span className="errorMsg">{errors.confirmpass}</span>
+                        {errors.confirmpass && <label className="errorMsg">{errors.confirmpass}</label>}
                     </span>
                 </div>
                 <div>
@@ -239,7 +233,7 @@ function RegistrationForm() {
                     </span>
                 </div>
             </form>
-        </div>
+        </>
     )
 }
 
