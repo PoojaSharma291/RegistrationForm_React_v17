@@ -1,16 +1,22 @@
-.heading{
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    color:crimson;
-    font-weight: bold;
-}
-.labelField{
+.heading {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  color: crimson;
   font-weight: bold;
 }
-.inputField{
- margin-left: 1%;
+.labelField {
+  font-weight: bolder;
 }
-.buttonField{
- margin-left: 25%;
+.inputField {
+  margin-left: 1%;
+}
+.buttonField {
+  margin-left: 25%;
+}
+.errorMsg {
+  display: block;
+  font-weight: bold;
+  font-size: 12px;
+  color: crimson;
 }
