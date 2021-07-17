@@ -17,3 +17,6 @@ Hence, preferred way of doing this is that one can replicate the behavior of set
     });
     }}
 
+# 3. Use Formik Library for creating controlled forms and Yup for schema Validation
+# 4. Uncontrolled Forms are preferred in case of read only fields of form like Upload file.
+# 5. React Hook Form library can also be used for desiging forms as it overcomes few drawbacks of Formik such as re-rendering at each change in form field.
