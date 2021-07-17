@@ -4,9 +4,15 @@ import * as Yup from "yup";
 
 function LoginForm() {
 
-    const handleValidation = () => {
-        console.log("Validation was invoked");
-    };
+    // const handleValidation = (values: any, actions : any) => {
+    //     console.log("Validation was invoked");
+    //     return new Promise<void>((resolve,reject) => {
+    //         setTimeout(() => {
+    //             resolve()
+    //             alert(JSON.stringify(values));
+    //         }, 5000)
+    //     });
+    // }
 
     const LoginSchema = Yup.object().shape({
         email: Yup.string()
@@ -23,6 +29,16 @@ function LoginForm() {
               ),
     });
 
+    const validatePassword = (value : any) =>{
+        var error = undefined;
+        try{
+            PasswordSchema.validateSync({password: value})
+        } catch(validationError){
+            error = validationError.errors[0];
+        }
+        return error;
+    }
+ 
     return (
         <>
             <h1>Sign Up</h1>
@@ -36,7 +52,6 @@ function LoginForm() {
                     alert(JSON.stringify(values, null, 2));
                 }}
                 validationSchema={LoginSchema}
-                validate={handleValidation}
             >
                 {({ errors, touched }) => (
                     <Form>
@@ -45,14 +60,14 @@ function LoginForm() {
                         {errors.email && touched.email ? (
                             <div>{errors.email}</div>
                         ) : null}
-                        <ErrorMessage name="email" />
+                        <ErrorMessage name="email" className="errorMsg" />
 
                         <label htmlFor="password">Password</label>
-                        <Field id="password" name="password" placeholder="Enter Password" type="password" validationSchema={PasswordSchema} />
+                        <Field id="password" name="password" placeholder="Enter Password" type="password" validate={validatePassword} />
                         {errors.password && touched.password ? (
                             <div>{errors.password}</div>
                         ) : null}
-                        <ErrorMessage name="password" />
+                        <ErrorMessage name="password" className="errorMsg"/>
 
                         <button type="submit">Submit</button>
                     </Form>
